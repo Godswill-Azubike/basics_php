@@ -71,7 +71,7 @@ function Add_numbers($n_1, $num_2)
 </head>
 
 <body>
-    <h1>Add number function call </h1>
+    <h1>Add number function call edited</h1>
 
     <?php
 
