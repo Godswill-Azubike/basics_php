@@ -1,33 +1,17 @@
 <?php
 
-$users = [
-    [
-        'name' => "john deo",
-        'gender' => "Male",
-        'age' => "67"
-    ],
-    [
-        'name' => "peter oke",
-        'gender' => "Male",
-        'age' => "50"
-    ],
-    [
-        'name' => "kate john",
-        'gender' => "Female",
-        'age' => "20"
-    ],
+$user_name = $_POST['user_name'];
+$email = $_POST['email'];
+$gender = $_POST['gender'];
+$age = $_POST['age'];
 
-    [
-        'name' => "Godswill Azubike",
-        'gender' => "Male",
-        'age' => "27"
-    ]
 
-];
-function details($name,  $gender, $age)
+
+function details($name, $email,  $gender, $age)
 {
 
     $full_name = $name;
+    $email = $email;
     $gender = $gender;
     $age = $age;
 
@@ -35,28 +19,13 @@ function details($name,  $gender, $age)
 
     echo $output = "<p>User name :  {$full_name}</p>
 
+    <P>User email is : {$email}</P>
+
     <P>User Gender : {$gender}</P>
 
     <p>User Ages : {$age}</p>";
 }
 
-?>
-
-
-<?php
-
-$num_1 = 4;
-
-$num_2 = 6;
-
-function Add_numbers($n_1, $num_2)
-{
-
-
-    $sum = $n_1 + $num_2;
-
-    return $sum;
-}
 
 ?>
 
@@ -67,40 +36,52 @@ function Add_numbers($n_1, $num_2)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>functions</title>
+    <title>form Request</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <h1>Add number function call edited</h1>
 
-    <?php
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h1 class="text-success">User Details form</h1>
+                    <form action="index.php" method="post">
+                        <label for="">User Name</label>
+                        <input type="text" name="user_name" class="form-control">
+                        <br>
 
-    $first_sum = Add_numbers($num_1, $num_2);
+                        <label for="">Email</label>
+                        <input type="text" name="email" class="form-control">
+                        <br>
 
-    echo $first_sum;
+                        <label for="">Age</label>
+                        <input type="text" name="age" class="form-control">
+                        <br>
 
-    echo "<br>";
-    $second_sum = Add_numbers(9, Add_numbers($num_1, $num_2));
+                        <label for="">User Gender</label>
+                        <input type="text" name="gender" class="form-control">
+                        <br>
 
-    echo $second_sum;
-    ?>
+                        <button type="submit" class="btn btn-outline-success">save info</button>
+                    </form>
+                </div>
+            </div>
 
-    <h1>Users Registration Details</h1>
-
-    <?php
-
-    foreach ($users as $key => $user) {
-
-        details($user['name'], $user['gender'], $user['age']);
-
-        echo "<hr>";
-    }
-
-    // print_r($users);
-
-    ?>
-
-
+            <div class="col-md-5">
+                <div class="card">
+                    <?php
+                    details($user_name, $email, $gender, $age);
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
