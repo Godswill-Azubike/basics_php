@@ -1,9 +1,48 @@
 <?php
 
-$user_name = $_POST['user_name'];
-$email = $_POST['email'];
-$gender = $_POST['gender'];
-$age = $_POST['age'];
+
+$user_name = "";
+$email = "";
+$gender = "";
+$age = "";
+
+$name_err = "";
+$email_err = "";
+$gender_err = "";
+$age_err = "";
+
+if (isset($_POST['submit'])) {
+
+
+    $user_name = $_POST['user_name'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $age = $_POST['age'];
+
+    // validating user_name
+    if (empty($user_name)) {
+        $name_err = "please the user name is required";
+    } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $user_name)) {
+
+        $name_err = "special charaters not allowed";
+    }
+
+    // validating email
+    if (empty($email)) {
+        $email_err = "please your email is required";
+    }
+
+    // validating gender
+    if (empty($gender)) {
+        $gender_err = "please tell us your gender";
+    }
+
+    // validating age
+    if (empty($age)) {
+        $age_err = "please tell us your age";
+    }
+}
+
 
 
 
@@ -54,21 +93,25 @@ function details($name, $email,  $gender, $age)
                     <form action="index.php" method="post">
                         <label for="">User Name</label>
                         <input type="text" name="user_name" class="form-control">
+                        <span><?php echo $name_err ?></span>
                         <br>
 
                         <label for="">Email</label>
-                        <input type="text" name="email" class="form-control">
+                        <input type="email" name="email" class="form-control">
+                        <span><?php echo $email_err ?></span>
                         <br>
 
                         <label for="">Age</label>
                         <input type="text" name="age" class="form-control">
+                        <span><?php echo $age_err ?></span>
                         <br>
 
                         <label for="">User Gender</label>
                         <input type="text" name="gender" class="form-control">
+                        <span><?php echo $gender_err ?></span>
                         <br>
 
-                        <button type="submit" class="btn btn-outline-success">save info</button>
+                        <button type="submit" name="submit" class="btn btn-outline-success">save info</button>
                     </form>
                 </div>
             </div>
