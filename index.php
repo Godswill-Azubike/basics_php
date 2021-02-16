@@ -1,6 +1,8 @@
 <?php
 
 
+require 'conn.php';
+
 $user_name = "";
 $email = "";
 $gender = "";
