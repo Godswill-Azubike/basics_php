@@ -30,18 +30,23 @@ if (isset($_POST['submit'])) {
     }
 
     // validating email
-    if (empty($email)) {
+    elseif (empty($email)) {
         $email_err = "please your email is required";
     }
 
     // validating gender
-    if (empty($gender)) {
+    elseif (empty($gender)) {
         $gender_err = "please tell us your gender";
     }
 
     // validating age
-    if (empty($age)) {
+    elseif (empty($age)) {
         $age_err = "please tell us your age";
+    } else {
+        $sql_query = "INSERT INTO user_details (user_name, email, age, gender) 
+                    VALUES ('{$user_name}', '{$email}', '{$age}', '{$gender}')";
+
+        $conn->query($sql_query);
     }
 }
 
