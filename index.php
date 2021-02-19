@@ -1,6 +1,6 @@
 <?php
 
-
+// connnet
 require 'conn.php';
 
 $user_name = "";
@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 
 
 
-function details($name, $email,  $gender, $age)
+function details($name, $email,  $gender, $age, $id)
 {
 
     $full_name = $name;
@@ -69,9 +69,18 @@ function details($name, $email,  $gender, $age)
 
     <P>User Gender : {$gender}</P>
 
-    <p>User Ages : {$age}</p>";
+    <p>User Ages : {$age}</p>
+
+    <p><a href='singleuser.php?q={$id}'>user_id : {$id}</a></p>";
 }
 
+
+?>
+
+<?php
+
+$read_sql = "SELECT * FROM user_details ORDER BY id DESC";
+$result = $conn->query($read_sql);
 
 ?>
 
@@ -124,11 +133,24 @@ function details($name, $email,  $gender, $age)
             </div>
 
             <div class="col-md-5">
-                <div class="card">
-                    <?php
-                    details($user_name, $email, $gender, $age);
-                    ?>
-                </div>
+                <?php
+                while ($row = $result->fetch_assoc()) {
+                ?>
+                    <div class="card p-4 mt-3 bg-info">
+                        <?php
+
+                        details($row['user_name'], $row['email'], $row['gender'], $row['age'], $row['id']);
+
+                        // details($user_name, $email, $gender, $age);
+
+                        // print_r($result->fetch_assoc());
+                        ?>
+                    </div>
+
+                <?php
+                }
+                ?>
+
             </div>
         </div>
     </div>
